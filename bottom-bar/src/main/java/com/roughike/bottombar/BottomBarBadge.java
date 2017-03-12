@@ -4,8 +4,7 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.os.Build;
-import android.os.Bundle;
-import android.support.annotation.VisibleForTesting;
+import android.support.annotation.Dimension;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.AppCompatImageView;
 import android.view.Gravity;
@@ -30,12 +29,17 @@ import android.widget.TextView;
  * limitations under the License.
  */
 class BottomBarBadge extends TextView {
-    private int count;
+    private int count = -1;
     private boolean isVisible = false;
 
     BottomBarBadge(Context context) {
         super(context);
     }
+
+    BottomBarBadge(Context context, int count) {
+                super(context);
+                this.count = count;
+            }
 
     /**
      * Set the unread / new item / whatever count for this Badge.
@@ -47,6 +51,9 @@ class BottomBarBadge extends TextView {
         setText(String.valueOf(count));
     }
 
+    void setBadgeText(String text){
+        setText(text);
+    }
     /**
      * Get the currently showing count for this Badge.
      *
